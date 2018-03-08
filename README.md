@@ -58,11 +58,14 @@ Tests can be written and run on .NET code using MSTest & the Visual Studio test 
 
 A *unit* test is a small, granular test designed to test the functionality of a single 'unit' of code (hence the name). 
 A very important characteristic of a unit test is that it does not depend on any other areas of code. 
-For example, if you're testing that a `CustomerController`'s `ChangeName` method is correctly updating a customer's name, you don't want the unit test to be making database calls - this would expand the scope of the test beyond one 'unit' of code. Once your unit tests begin depending on external code, they're no longer unit tests! Depending on external code introduces complexity into your simple tests, and reliance on external factors to pass, such as a valid database or internet connection.
+
+For example, if you're testing that a `CustomerController`'s `ChangeName` method is correctly updating a customer's name, you don't want the unit test to be making database calls - this would expand the scope of the test beyond one 'unit' of code. 
+Once your unit tests begin depending on external code, they're no longer unit tests! Depending on external code introduces complexity into your simple tests, and reliance on external factors to pass, such as a valid database or internet connection.
 
 ### Integration Tests
 
 While unit tests are small, they don't interact with the application in a larger scope. This is what *integration tests* are for. As a simple example, an integration test might ensure that the database is configured and connected correctly, by adding a record to the Customers table by using the `CustomerRepository`. 
+
 While unit tests are testing the *functionality* of individual code blocks, integration tests are testing the *dependencies* between the different blocks and areas of code.
 
 # Starting Testing
