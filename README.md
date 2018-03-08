@@ -304,6 +304,11 @@ In the above snippet the test was called `CallViewCustomerById_ViewModelShouldHa
 
 For example, `CallGetCustomerById_WithId_ShouldReturnCustomerWithId1`.
 
+We mentioned earlier that we shouldn't add 'Test' or 'Tests' to the end of our test classes - this is to create a sentence-like structure to our class/method names.
+
+For example when combined with the class, the above method name reads fluidly:
+`CustomerController/CallGetCustomerById_WithId_ShouldReturnCustomerWithId1`. Adding 'Tests' to the class name would break that up and make it less fluent.
+
 ## Further tips to write better tests
 
 Once you've got the basics, you're good to go! But there are some best practices and tips here to help you write better tests from the go.
