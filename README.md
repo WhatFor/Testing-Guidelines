@@ -267,7 +267,7 @@ Be aware that this is still spinning up a database and is such external code, so
 		}
 	}
 
-### Testing Controllers
+## Testing Controllers
 
 Writing unit tests for controllers is fairly simple. The only thing to pay attention to is the external calls - make sure to mock! Once you've created your mock, you can simply call it's methods as you would through a HTTP request.
 
@@ -294,7 +294,7 @@ Writing unit tests for controllers is fairly simple. The only thing to pay atten
 		}
 	}
 
-### Naming your tests
+## Naming your tests
 
 When it comes to writing your unit tests, naming the test methods is very important. We need to take an opposite approach to writing normal .NET code - longer names are better!
 
