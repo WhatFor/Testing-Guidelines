@@ -4,14 +4,13 @@ This documentation is intended to give an introduction to writing tests for .NET
 
 ## Why Write Tests?
 
-Before we go into more detail, the benefits of testing can be summarised as:
+Before we go into more detail, the benefits of testing can be summarized as:
 
-* Code corrrectness
+* Code correctness
 * Code confidence
 * Cut down debugging time
 * Raises awareness of complex areas of code
 * Measuring code performance
-
 
 ### Code correctness
 
@@ -19,30 +18,31 @@ When thinking of writing tests for code, most people would consider tests to sol
 
 ### Code confidence
 
-After making a change within a large codebase, it is difficult without tests to be aware of any possible side effects of the change. Tests can help with this by confirming that code written across the entire codebase is still functioning identially to as before the change. This ability to quickly check that a change hasn't broken seperated sections of code is extremely beneficial, especially when refactoring code, allowing you to ship changes with confience.
+After making a change within a large code-base, it is difficult without tests to be aware of any possible side effects of the change. Tests can help with this by confirming that code written across the entire code-base is still functioning identically to as before the change. This ability to quickly check that a change hasn't broken separated sections of code is extremely beneficial, especially when refactoring code, allowing you to ship changes with confidence.
 
 ### Reducing debugging time
 
-If you're writing tests as you write your code \(which you should be\), you will find that the time spent writing tests can often be far less than time you would othewise spend fixing bugs. If you're confident that your test is expecting a certain result, but the code that it was written to test is not returning the expected result, you can fix the code as you're writing it - not later down the line when it is identified as a bug, or worse as a support ticket!
+If you're writing tests as you write your code \(which you should be\), you will find that the time spent writing tests can often be far less than time you would otherwise spend fixing bugs. If you're confident that your test is expecting a certain result, but the code that it was written to test is not returning the expected result, you can fix the code as you're writing it - not later down the line when it is identified as a bug, or worse as a support ticket!
 
 ### Raising awareness of complex code
 
-Complex code is something that creeps into any project, wether we're aware we're writing complex code or not. Writing small, specific tests forces us to test only small, simple sections of code at a time. This granular approach to testing highlights areas of complex code, as it is extremely difficult to write a small, specific test for a large, complex section of code. When we run into a scenario like this, it's a signal that we should consider refactoring the complex code into easier to manage, smaller chunks of code, reducing complexity and improving code quality.
+Complex code is something that creeps into any project, whether we're aware we're writing complex code or not. Writing small, specific tests forces us to test only small, simple sections of code at a time. This granular approach to testing highlights areas of complex code, as it is extremely difficult to write a small, specific test for a large, complex section of code. When we run into a scenario like this, it's a signal that we should consider refactoring the complex code into easier to manage, smaller chunks of code, reducing complexity and improving code quality.
 
 ### Measuring code performance
 
 When we run any tests we've written, and it consumes code that is slow, it is a very clear identifier that the code is inefficient. This helps us to write faster code without having to benchmark. For the majority of unit tests we want them each to complete in approx. 25ms - any longer and you might want to look at your code! If we aim to keep each test as fast as possible, we'll keep the suite of tests running quickly (so we can run them often) and will also help speed up overall speed of our code.
 
 
+
 In summary, writing tests not only confirms that our code is correct but it also reduces time spent debugging and helps us to write better, faster code. These concepts will be covered in more detail throughout this documentation along with examples.
 
 # Writing Tests
 
-Tests can be writtten and run on .NET code using MSTest & the Visual Studio test runner. Before we get into the syntax of writing tests, we will first define the two types of tests.
+Tests can be written and run on .NET code using MSTest & the Visual Studio test runner. Before we get into the syntax of writing tests, we will first define the two types of tests.
 
 ### Unit Tests
 
-A *unit test* is a small, granular test, designed to test the functionality of a single 'unit' of code \(hence the name\). A very important characteristic of a unit test is that it does not depend on any *other* areas of code. For example, if you're testing that a `CustomerController`'s `ChangeName` method is correctly updating a customer's name, you don't want the unit test to be making database calls - this would expand the scope of the test beyond one 'unit' of code. Once your unit tests begin depending on external code, they're no longer unit tests! Depending on external code introduces complexiy into your simple tests, and reliance on external factors to pass, such as a valid database or internet connection.
+A *unit test* is a small, granular test, designed to test the functionality of a single 'unit' of code \(hence the name\). A very important characteristic of a unit test is that it does not depend on any *other* areas of code. For example, if you're testing that a `CustomerController`'s `ChangeName` method is correctly updating a customer's name, you don't want the unit test to be making database calls - this would expand the scope of the test beyond one 'unit' of code. Once your unit tests begin depending on external code, they're no longer unit tests! Depending on external code introduces complexity into your simple tests, and reliance on external factors to pass, such as a valid database or internet connection.
 
 ### Integration Tests
 
@@ -110,12 +110,11 @@ Act is where we carry out the action that we're testing. Ideally this should be 
 
 Finally, Assert is where we carry out the actual evaluation of our result. Here we're using `Assert.AreEqual`, which will compare two input values and either pass or fail the test depending on the outcome. The test will be inconclusive without an Assert, so you'll always have at least one. Ideally each test can usually only include one assert statement, but don't be afraid to assert multiple times if the assertions are related - if you find you're asserting different functionality in a single test, it's an indication you need to split your test into multiple.
 
-It's up to you wether you want to include the three AAA comments in your test code, however it's recommended for both readability and structure.
+It's up to you whether you want to include the three AAA comments in your test code, however it's recommended for both readability and structure.
 
 `.AreEqual` isn't the only assert in your testing toolbox. A few more are `.AreNotEqual(...)`,
 `.IsNull(...)` and `.IsTrue(...)`.
 
-* * *
 
 When we're deciding what code we need to test, it's important to look at how functional the code is. It's unnecessary to test a DTO/ POCO, but if we have a validation rule or an object builder, we might want to test that! 
 There's no need to aim for 100% test coverage - a large portion of those tests would most likely be redundant. Testing key areas of code is enough - aiming for 70% is more than great!
@@ -188,7 +187,7 @@ If you find that you're using a mock of a class across multiple tests within a s
 		}
 	}
 
-This logic can be applied to almost any class - even a HttpClient! In the next example, we're again mocking an object but we're also calling `.Setup()` on the mock, defining what the class' method should do when callled. When we call the .Get() method on our HttpClient in our test code, it will return the string "Hello, World!".
+This logic can be applied to almost any class - even a HttpClient! In the next example, we're again mocking an object but we're also calling `.Setup()` on the mock, defining what the class's method should do when called. When we call the .Get() method on our HttpClient in our test code, it will return the string "Hello, World!".
 
 	[TestClass]
 	public class CustomerController
@@ -203,7 +202,7 @@ This logic can be applied to almost any class - even a HttpClient! In the next e
 		}
 	}
 
-In a similar way, we don't want to be using real EF database contexts either - imagine running tests that insert data into a database on a production database - Oops! Luckily EF offers the ability to instatiate a new, in-memory database context for your integration tests. Be aware that this is still spinning up a database and is such external code, so you'll only want to use this for integration tests - not your unit tests - but is still incredibly useful!
+In a similar way, we don't want to be using real EF database contexts either - imagine running tests that insert data into a database on a production database - Oops! Luckily EF offers the ability to instantiate a new, in-memory database context for your integration tests. Be aware that this is still spinning up a database and is such external code, so you'll only want to use this for integration tests - not your unit tests - but is still incredibly useful!
 
 	[TestClass]
 	public class CustomerController
@@ -262,20 +261,16 @@ For example, `CallGetCustomerById_WithId_ShouldReturnCustomerWithId1`.
 Once you've got the basics, you're good to go! But there are some best practices and tips here to help you write better tests from the go.
 
 * Avoid splitting test logic out into other classes or base classes. You might think it would be clever to create a base test class with mocking helpers, but that's spreading your test logic across other files and makes it harder to write and read your tests. Keep all your related test code in one file/location.
-
 * If a test is difficult to setup, consider it an indicator that your code needs work. Tests provide *a lot* of feedback on code quality and complexity. Listen to your tests! If you find you're struggling to build a test, refactor! Don't just write a big, complex test - they're brittle.
-
 * Treat your tests as first-class code. Keep it clean, decoupled and maintained. Your tests are important and an invaluable addition to your coding toolkit, don't let them get rusty.
-
-* Making your code work is only half the work. Code needs to be efficient, readable, de-coupled and maintainable. With the introduction of tests, you work towards meeting all of these requirements.
-
+* Making your code work is only half the work. Code needs to be efficient, readable, decoupled and maintainable. With the introduction of tests, you work towards meeting all of these requirements.
 * If you're expecting an exception to be thrown from your code, you can add an attribute to the test method and call the throwing code. For example, `[ExpectedException(typeof(InvalidOperationException))]`.
 
 # Test Driven Development - or TDD
 
 Now that you're a master at writing good, clean tests for .NET code, and you're well aware of all the incredible reasons to start writing tests, you're ready to begin TDD.
 
-TDD is a methodolgy that flips the standard flow of writing code (write THEN test) around, so we write our tests first and THEN our code!
+TDD is a methodology that flips the standard flow of writing code (write THEN test) around, so we write our tests first and THEN our code!
 For example, if you're going to be writing a method to strip any invalid characters from an input string (to be used for cleaning input data), you would first define the test to test that method, such as:
 
 		[TestMethod]
