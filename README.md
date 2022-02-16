@@ -37,7 +37,7 @@ If you're confident that your test is expecting a certain result, but the code t
 
 Complex code is something that creeps into any project, whether we're aware we're writing complex code or not. Writing small, specific tests forces us to test only small, simple sections of code at a time. 
 This granular approach to testing highlights areas of complex code, as it is extremely difficult to write a small, specific test for a large, complex section of code.
-When we run into a scenario like this, it's a signal that we should consider refactoring the complex code into easier to manage, smaller chunks of code, reducing complexity and improving code quality.
+When we run into a scenario like this, it's a signal that we should consider refactoring the complex code into more manageable and smaller chunks of code, reducing complexity and improving code quality.
 
 
 ### Measuring code performance
@@ -52,7 +52,7 @@ In summary, writing tests not only confirms that our code is correct but it also
 
 # Writing Tests
 
-Tests can be written and run on .NET code using MSTest & the Visual Studio test runner. Before we get into the syntax of writing tests, we will first define the two types of tests.
+Tests can be written and run on .NET code using any testing framework - xUnit, NUnit or MSTest -  and the Visual Studio test runner. Before we get into the syntax of writing tests, we will first define the two types of tests.
 
 ### Unit Tests
 
@@ -269,7 +269,7 @@ Be aware that this is still spinning up a database and is such external code, so
 
 ## Testing Controllers
 
-Writing unit tests for controllers is fairly simple. The only thing to pay attention to is the external calls - make sure to mock! Once you've created your mock, you can simply call it's methods as you would through a HTTP request.
+Writing unit tests for controllers is fairly simple. The only thing to pay attention to is the external calls - make sure to mock! Once you've created your mock, you can simply call it's methods as you would through a HTTP request. *Note*: Please be aware that it is bad practice to have a lot of business logic in your controllers - for most projects, you probably won't need to write any tests for controllers.
 
 	namespace WebApp.Test.Unit
 	{
